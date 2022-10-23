@@ -13,6 +13,7 @@ public class ChatServerTCP {
     private static final int PORTA = 6000;
     private ServerSocket serverSocket;
     private final List<ClienteSocket> clientes = new LinkedList<>();
+    private ClienteSocket clienteSocket;
     //Usando o linkedList, pois não sei quantos cliente serão conectados.
 
 
@@ -67,10 +68,10 @@ public class ChatServerTCP {
         while (iterator.hasNext()) {
             ClienteSocket clienteSocket = iterator.next();
             if (!sender.equals(clienteSocket)) {
-                // clienteSocket.enviarMensagem(msg);
-                if(!clienteSocket.enviarMensagem("Cliente " + sender.getRemoteSocketAddress() + ": " +  msg)) {
-                    iterator.remove();
-                }
+                clienteSocket.enviarMensagem("Cliente " + sender.getRemoteSocketAddress() + ": " +  msg);
+                // if(!clienteSocket.enviarMensagem("Cliente " + sender.getRemoteSocketAddress() + ": " +  msg)) {
+                //     iterator.remove();
+                // }
             } 
         }
 
